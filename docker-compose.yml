@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+    webnode:
+        container_name: nodeAPIv2
+        restart: always
+        build: .
+        ports: 
+            - "3000:3000"
+        links:
+            - mongo
+        volumes:
+            - .:/usr/src/app
+
+    mongo:
+        container_name: mongodbv2
+        image: mongo
+        ports:
+            - "27017:27017" 
+        volumes:
+            - ./database:/data/db
